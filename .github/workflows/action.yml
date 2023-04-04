@@ -7,7 +7,7 @@ inputs:
     required : true
     default : '0'
 outputs:
-  num_squred:
+  num_squared:
     description: 'Square of the input'
     value: ${{ steps.get-square.outputs.num_squared }}
 runs:
