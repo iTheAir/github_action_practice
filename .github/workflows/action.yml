@@ -1,0 +1,30 @@
+# action.yml
+name: 'Github Action Practice'
+description: 'Empty'
+inputs:
+  num:
+    description: 'Enter a number'
+    required : true
+    default : '0'
+outputs:
+  num_squred:
+    description: 'Square of the input'
+    value: ${{ steps.get-square.outputs.num_squared }}
+runs:
+  steps:
+    - name: Setup Python
+      uses: actions/setup-python@v3.1.3
+      with:
+        python-version : '3.1.3'
+    - name: Install Dependencies
+      run: pip install -r requirements.txt
+      shell: bash
+    - name: Pass Inputs to Shell
+      run: |
+        echo "INPUT_NUM=${{ inputs.num }}" >> $GITHUB_ENV
+      shell: bash
+    - name: fetch the number's square
+      id: get-square
+      run: python src/get_num_square.py
+      shell: bash
+
